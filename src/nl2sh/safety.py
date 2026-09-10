@@ -56,6 +56,11 @@ HIGH_RISK_PATTERNS = [
 
     # Sudo usage
     (r"\bsudo\b", "Superuser privilege escalation (sudo)"),
+
+    # Arbitrary script/payload generation to disk
+    (r"(Set-Content|Out-File|Add-Content)\s+.*-Path\s+['\"].*\.(ps1|vbs|bat|cmd|sh|exe)['\"]", "Writing executable script payload to disk"),
+    (r">\s*['\"]?.*\.(ps1|vbs|bat|cmd|sh|exe)\b", "Redirecting output into an executable script or binary file"),
+    (r"\b(Disable-ADAccount|Move-ADObject|Remove-ADUser|Set-ADUser)\b", "Active Directory user/domain modification"),
 ]
 
 # Medium risk patterns (operations that alter state or terminate processes, but aren't necessarily catastrophic)

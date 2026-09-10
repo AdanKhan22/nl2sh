@@ -46,6 +46,10 @@ def test_low_risk_commands(cmd, expected_risk):
         "del /f /s /q *",
         "format C:",
         "Format-Volume -DriveLetter D",
+        'Set-Content -Path ".\\Invoke-SecretScanner.ps1" -Value "malicious payload"',
+        "Out-File -Path 'payload.vbs'",
+        "echo 'bad' > run.sh",
+        "Disable-ADAccount -Identity testuser",
     ],
 )
 def test_high_risk_commands(cmd):

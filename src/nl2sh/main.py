@@ -49,18 +49,19 @@ def process_instruction(
         return
 
     if suggestion.clarification_needed:
-        ui.display_warning("The model indicated that your instruction is ambiguous or needs clarification:")
+        ui.display_warning("Request Refused / Clarification Needed:")
         if suggestion.clarification_message:
-            ui.console.print(f"  [italic]{suggestion.clarification_message}[/italic]")
-        ui.console.print(f"\nProposed alternative/preliminary command: [yellow]{suggestion.command}[/yellow]")
-        ui.console.print(f"Explanation: {suggestion.explanation}\n")
+            ui.console.print(f"  [italic]{suggestion.clarification_message}[/italic]\n")
+        if suggestion.command:
+            ui.console.print(f"Proposed alternative: [yellow]{suggestion.command}[/yellow]")
+            ui.console.print(f"Explanation: {suggestion.explanation}\n")
         history_mgr.log(
             HistoryRecord(
                 instruction=query,
                 target_os=target_os,
                 target_shell=target_shell,
-                generated_command=suggestion.command,
-                explanation=suggestion.explanation,
+                generated_command=suggestion.command or "[REFUSED / CLARIFICATION NEEDED]",
+                explanation=suggestion.clarification_message or suggestion.explanation,
                 risk_level=suggestion.risk_level,
                 executed=False,
             )
