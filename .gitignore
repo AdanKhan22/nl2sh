@@ -1,0 +1,43 @@
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment & Secret Files (CRITICAL - NEVER COMMIT)
+.env
+.env.*
+!.env.example
+*.env
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Packaging & Build Artifacts
+build/
+dist/
+*.spec
+*.egg-info/
+.eggs/
+*.whl
+*.tar.gz
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local Tool Configuration & History
+.nl2sh/
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

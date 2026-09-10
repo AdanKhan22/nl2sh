@@ -1,0 +1,25 @@
+[project]
+name = "nl2sh"
+version = "0.1.0"
+description = "Natural Language to Shell Commands CLI tool"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "google-genai>=2.22.0",
+    "python-dotenv>=1.2.3",
+    "rich>=15.0.0",
+    "typer>=0.27.2",
+]
+
+[project.scripts]
+nl2sh = "nl2sh.main:app"
+
+[build-system]
+requires = ["uv_build>=0.12.12,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.22.2",
+    "pytest>=9.1.1",
+]
